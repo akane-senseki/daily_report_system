@@ -46,7 +46,7 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setEmployee((Employee)request.getSession().getAttribute("login_employee"));
 
             Date report_date = new Date(System.currentTimeMillis());
-            String rd_str = request.getParameter("request_date");
+            String rd_str = request.getParameter("report_date");
             if(rd_str != null && !rd_str.equals("")){ //空欄だった場合は当日の日付が入るように
                 report_date = Date.valueOf(request.getParameter("report_date")); //Date.valuOfでString型からDate型へ返還している
 
@@ -65,7 +65,7 @@ public class ReportsCreateServlet extends HttpServlet {
 
                 request.setAttribute("_token", request.getSession().getId());
                 request.setAttribute("report", r);
-                request.setAttribute("eeror", errors);
+                request.setAttribute("errors", errors);
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/new.jsp");
                 rd.forward(request, response);
